@@ -1,10 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#00a9ad">
+<meta name="theme-color" content="#020b05">
 <title>KAI SHI | HACK PUBG</title>
 
 <style>
@@ -13,15 +12,18 @@
   --bg: #020b05;
   --panel: rgba(1, 14, 6, .94);
 }
-* { box-sizing: border-box; }
+
+* {
+  box-sizing: border-box;
+}
 
 body {
   margin: 0;
-  padding: 20px 14px;
+  padding: 8px 14px 20px;
   min-height: 100vh;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   background: var(--bg);
   color: #9affb5;
   font-family: Consolas, monospace;
@@ -33,11 +35,13 @@ body {
   inset: 0;
   width: 100%;
   height: 100%;
-  z-index: -1;
+  z-index: 0;
   pointer-events: none;
 }
 
 .container {
+  position: relative;
+  z-index: 1;
   width: 100%;
   max-width: 470px;
   overflow: hidden;
@@ -49,7 +53,7 @@ body {
 }
 
 @keyframes appear {
-  from { opacity: 0; transform: translateY(20px); }
+  from { opacity: 0; transform: translateY(15px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
@@ -76,6 +80,7 @@ body {
 }
 
 .dot {
+  flex-shrink: 0;
   width: 9px;
   height: 9px;
   border-radius: 50%;
@@ -88,12 +93,17 @@ body {
   50% { opacity: .3; }
 }
 
+/* Banner tự ẩn nếu không có ảnh */
 .banner {
+  display: none;
   width: 100%;
   height: 125px;
-  background: linear-gradient(135deg, #031a09, #001006);
   border-bottom: 1px solid #006b2c;
   overflow: hidden;
+}
+
+.banner.has-image {
+  display: block;
 }
 
 .banner img {
@@ -116,11 +126,11 @@ body {
   color: var(--green);
 }
 
-/* Ô VUÔNG CHÈN ẢNH */
+/* LOGO: KHÔNG CÒN KHOẢNG TRỐNG LỚN */
 .logo {
   width: 174px;
   height: 174px;
-  margin: -42px auto 30px;
+  margin: 12px auto 30px;
   position: relative;
   z-index: 2;
   overflow: hidden;
@@ -211,10 +221,12 @@ h1 {
 }
 
 .preview-placeholder {
+  display: none;
   font-size: 12px;
   letter-spacing: 2px;
   color: #70d991;
   line-height: 1.8;
+  text-align: center;
 }
 
 .btn {
@@ -223,7 +235,7 @@ h1 {
   justify-content: center;
   gap: 12px;
   width: 100%;
-  min-height: 66px;
+  min-height: 60px;
   margin-bottom: 22px;
   padding: 16px 10px;
   text-decoration: none;
@@ -259,7 +271,9 @@ h1 {
   width: 60%;
   height: 100%;
   transform: skewX(-25deg);
-  background: linear-gradient(90deg, transparent, #ffffff70, transparent);
+  background: linear-gradient(
+    90deg, transparent, #ffffff70, transparent
+  );
   animation: sweep 3s infinite;
   pointer-events: none;
 }
@@ -294,6 +308,14 @@ h1 {
   background: #00ff6605;
 }
 
+.info p {
+  margin: 3px 0;
+}
+
+.info span {
+  color: var(--green);
+}
+
 footer {
   margin-top: 23px;
   padding-top: 17px;
@@ -304,12 +326,27 @@ footer {
   letter-spacing: 1px;
 }
 
-footer span { color: var(--green); }
+footer span {
+  color: var(--green);
+}
 
 @media (max-width: 360px) {
-  .content { padding: 0 15px 22px; }
-  .logo { width: 145px; height: 145px; }
-  .topbar { padding: 16px; }
+  .content {
+    padding: 0 15px 22px;
+  }
+
+  .logo {
+    width: 145px;
+    height: 145px;
+  }
+
+  .topbar {
+    padding: 16px;
+  }
+
+  .subtitle {
+    letter-spacing: 2px;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -326,27 +363,39 @@ footer span { color: var(--green); }
 <canvas id="matrix" aria-hidden="true"></canvas>
 
 <main class="container">
+
   <header class="topbar">
     <span>Kai Shi</span>
-    <span class="online"><span class="dot"></span> ONLINE</span>
+    <span class="online">
+      <span class="dot"></span> ONLINE
+    </span>
   </header>
 
-  <!-- ẢNH BANNER ĐẦU TRANG -->
-  <div class="banner">
-    <img src="banner.jpg" alt="Kai Shi banner"
-         onerror="this.style.display='none'">
+  <!-- BANNER: TỰ ẨN NẾU ẢNH LỖI -->
+  <div class="banner" id="banner">
+    <img
+      src="banner.jpg"
+      alt="Kai Shi banner"
+      onload="this.parentElement.classList.add('has-image')"
+      onerror="this.parentElement.remove()"
+    >
   </div>
 
   <div class="content">
+
     <div class="system-line"></div>
 
-    <!-- THAY ẢNH NÀY BẰNG ẢNH CỦA BẠN -->
+    <!-- LOGO CHÍNH -->
     <div class="logo">
-      <img src="https://i.postimg.cc/Kcps1Jz0/IMG-1631.jpg" alt="Logo Kai Shi"
-           onerror="this.style.display='none'">
+      <img
+        src="https://i.postimg.cc/Kcps1Jz0/IMG-1631.jpg"
+        alt="Logo Kai Shi"
+        onerror="this.style.display='none'"
+      >
     </div>
 
     <h1>KAI SHI</h1>
+
     <p class="subtitle">HACK PUBG VÀ KEY FREE</p>
 
     <div class="status">
@@ -354,71 +403,82 @@ footer span { color: var(--green); }
       Hoạt Động 24/24
     </div>
 
-    <!-- ẢNH GIỚI THIỆU PHÍA TRÊN NÚT TẢI -->
+    <!-- ẢNH GIỚI THIỆU -->
     <p class="section">1. DRACULA PRO</p>
 
     <div class="preview">
-      <img src="https://i.postimg.cc/YSjxBwNQ/IMG-1632.jpg" alt="Ảnh giới thiệu tool"
-           onerror="this.style.display='none'">
+      <img
+        src="https://i.postimg.cc/YSjxBwNQ/IMG-1632.jpg"
+        alt="Ảnh giới thiệu tool"
+        onerror="this.style.display='none';this.nextElementSibling.style.display='block'"
+      >
       <div class="preview-placeholder">
+        CHƯA CÓ ẢNH GIỚI THIỆU
       </div>
     </div>
 
-    <!-- LINK TẢI XUỐNG -->
-
-    <a class="btn download"
-       href="itms-services://?action=download-manifest&url=https%3A%2F%2Fappinstall.cloud%2Fplist%2Ffmdanift9999.plist%3Fv%3D10c2d77fff8b23e9"
-       target="_blank" rel="noopener noreferrer">
-      TẢI HACK
+    <!-- LINK TẢI ỨNG DỤNG -->
+    <a
+      class="btn download"
+      href="itms-services://?action=download-manifest&amp;url=https%3A%2F%2Fappinstall.cloud%2Fplist%2Ffmdanift9999.plist%3Fv%3D10c2d77fff8b23e9"
+    >
+      TẢI ỨNG DỤNG
     </a>
 
     <!-- LINK LẤY KEY -->
-
-    <a class="btn key"
-       href="https://link4m.net/GSo0CC"
-       target="_blank" rel="noopener noreferrer">
+    <a
+      class="btn key"
+      href="https://link4m.net/GSo0CC"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
       LẤY KEY
     </a>
 
     <div class="info">
-      <p><span>▸</span> Hack hoạt động an toàn tuyệt đối</p>
-      <p><span>▸</span> Cài đặt dễ dang</p>
-      <p><span>▸</span> Hack hoạt động tất cả các phiên bản ios</p>
-      <p><span>▸</span> Hack và key hoàn toàn miễn phí</p>
-    </div>
-
+      <p><span>▸</span> Hãy tham gia kênh telegram để nhận được thông báo mỗi khi update các phiên bản hack mới </p>
     <footer>
       <span>KAI SHI</span> HACK PUBG<br>
-      © 2026 KAI SHAI VN
+      © 2026 KAI SHI VN
     </footer>
+
   </div>
 </main>
 
 <script>
-/* HIỆU ỨNG MATRIX RAIN */
+/* MATRIX RAIN */
 (() => {
   const canvas = document.getElementById("matrix");
   const ctx = canvas.getContext("2d");
+
   if (!ctx) return;
 
   const chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZアイウエオ";
   const size = 15;
-  let width, height, drops = [], raf = 0;
+
+  let width = 0;
+  let height = 0;
+  let drops = [];
+  let raf = 0;
   let running = true;
 
   function resize() {
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
+
     width = window.innerWidth;
     height = window.innerHeight;
+
     canvas.width = width * dpr;
     canvas.height = height * dpr;
     canvas.style.width = width + "px";
     canvas.style.height = height + "px";
+
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
     const columns = Math.ceil(width / size);
+
     drops = Array.from(
-      {length: columns},
+      { length: columns },
       () => Math.random() * (height / size)
     );
   }
@@ -431,13 +491,22 @@ footer span { color: var(--green); }
     ctx.font = size + "px monospace";
 
     for (let i = 0; i < drops.length; i++) {
-      const char = chars[Math.floor(Math.random() * chars.length)];
-      ctx.fillStyle = Math.random() > 0.97 ? "#caffd7" : "#00ff66";
+      const char = chars[
+        Math.floor(Math.random() * chars.length)
+      ];
+
+      ctx.fillStyle =
+        Math.random() > 0.97 ? "#caffd7" : "#00ff66";
+
       ctx.fillText(char, i * size, drops[i] * size);
 
-      if (drops[i] * size > height && Math.random() > 0.975) {
+      if (
+        drops[i] * size > height &&
+        Math.random() > 0.975
+      ) {
         drops[i] = 0;
       }
+
       drops[i] += 0.45 + Math.random() * 0.45;
     }
 
