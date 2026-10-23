@@ -1,0 +1,465 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#00a9ad">
+<title>KAI SHI | HACK PUBG</title>
+
+<style>
+:root {
+  --green: #00ff66;
+  --bg: #020b05;
+  --panel: rgba(1, 14, 6, .94);
+}
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  padding: 20px 14px;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--bg);
+  color: #9affb5;
+  font-family: Consolas, monospace;
+  overflow-x: hidden;
+}
+
+#matrix {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.container {
+  width: 100%;
+  max-width: 470px;
+  overflow: hidden;
+  border: 1px solid #008d38;
+  border-radius: 28px;
+  background: var(--panel);
+  box-shadow: 0 0 30px #00ff6618;
+  animation: appear .8s ease both, borderGlow 3s infinite alternate;
+}
+
+@keyframes appear {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes borderGlow {
+  from { box-shadow: 0 0 10px #00ff6610; }
+  to { box-shadow: 0 0 30px #00ff6630; }
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 19px 22px;
+  border-bottom: 1px solid #006b2c;
+  color: var(--green);
+  font-size: 12px;
+  letter-spacing: 2px;
+}
+
+.online {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--green);
+  box-shadow: 0 0 12px var(--green);
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  50% { opacity: .3; }
+}
+
+.banner {
+  width: 100%;
+  height: 125px;
+  background: linear-gradient(135deg, #031a09, #001006);
+  border-bottom: 1px solid #006b2c;
+  overflow: hidden;
+}
+
+.banner img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+.content {
+  padding: 0 22px 26px;
+  text-align: center;
+}
+
+.system-line {
+  text-align: left;
+  padding: 20px 0;
+  font-size: 12px;
+  letter-spacing: 3px;
+  color: var(--green);
+}
+
+/* Ô VUÔNG CHÈN ẢNH */
+.logo {
+  width: 174px;
+  height: 174px;
+  margin: -42px auto 30px;
+  position: relative;
+  z-index: 2;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #020b04;
+  border: 3px solid var(--green);
+  border-radius: 30px;
+  box-shadow: 0 0 18px #00ff6660, 0 0 40px #00ff6620;
+  animation: float 3s ease-in-out infinite;
+}
+
+.logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-7px); }
+}
+
+h1 {
+  color: var(--green);
+  font-size: clamp(30px, 8vw, 42px);
+  letter-spacing: 5px;
+  text-shadow: 0 0 12px #00ff66, 0 0 30px #00ff6670;
+  margin: 15px 0;
+  animation: glowText 2s infinite alternate;
+}
+
+@keyframes glowText {
+  from { text-shadow: 0 0 8px #00ff66; }
+  to { text-shadow: 0 0 24px #00ff66, 0 0 40px #00ff6680; }
+}
+
+.subtitle {
+  font-size: 12px;
+  letter-spacing: 3px;
+  line-height: 1.9;
+}
+
+.status {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding: 15px;
+  margin: 22px 0 30px;
+  border: 1px solid #007c35;
+  border-radius: 10px;
+  background: #00ff6608;
+  color: var(--green);
+  font-size: 12px;
+}
+
+.section {
+  text-align: left;
+  font-size: 12px;
+  letter-spacing: 2px;
+  margin: 24px 0 15px;
+  color: #a5ffbb;
+}
+
+.preview {
+  width: 100%;
+  min-height: 82px;
+  margin-bottom: 27px;
+  padding: 18px;
+  border: 1px solid #008c3c;
+  border-radius: 15px;
+  background: #00ff6608;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.preview img {
+  display: block;
+  max-width: 100%;
+  max-height: 280px;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+.preview-placeholder {
+  font-size: 12px;
+  letter-spacing: 2px;
+  color: #70d991;
+  line-height: 1.8;
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+  min-height: 66px;
+  margin-bottom: 22px;
+  padding: 16px 10px;
+  text-decoration: none;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  border-radius: 13px;
+  transition: .25s;
+  position: relative;
+  overflow: hidden;
+}
+
+.download {
+  color: #001c08;
+  background: var(--green);
+  border: 1px solid var(--green);
+  box-shadow: 0 0 25px #00ff6635;
+}
+
+.key {
+  color: var(--green);
+  background: #00ff6608;
+  border: 1px solid var(--green);
+  box-shadow: 0 0 15px #00ff6615;
+}
+
+.btn::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -120%;
+  width: 60%;
+  height: 100%;
+  transform: skewX(-25deg);
+  background: linear-gradient(90deg, transparent, #ffffff70, transparent);
+  animation: sweep 3s infinite;
+  pointer-events: none;
+}
+
+@keyframes sweep {
+  0%, 65% { left: -120%; }
+  100% { left: 160%; }
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  filter: brightness(1.15);
+}
+
+.download:hover {
+  box-shadow: 0 0 35px #00ff6690;
+}
+
+.key:hover {
+  background: #00ff661c;
+  box-shadow: 0 0 30px #00ff6660;
+}
+
+.info {
+  text-align: left;
+  font-size: 12px;
+  line-height: 2.2;
+  padding: 16px;
+  border: 1px solid #006b2c;
+  border-radius: 12px;
+  color: #82c995;
+  background: #00ff6605;
+}
+
+footer {
+  margin-top: 23px;
+  padding-top: 17px;
+  border-top: 1px solid #006b2c;
+  color: #578966;
+  font-size: 10px;
+  line-height: 2;
+  letter-spacing: 1px;
+}
+
+footer span { color: var(--green); }
+
+@media (max-width: 360px) {
+  .content { padding: 0 15px 22px; }
+  .logo { width: 145px; height: 145px; }
+  .topbar { padding: 16px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<canvas id="matrix" aria-hidden="true"></canvas>
+
+<main class="container">
+  <header class="topbar">
+    <span>Kai Shi</span>
+    <span class="online"><span class="dot"></span> ONLINE</span>
+  </header>
+
+  <!-- ẢNH BANNER ĐẦU TRANG -->
+  <div class="banner">
+    <img src="banner.jpg" alt="Kai Shi banner"
+         onerror="this.style.display='none'">
+  </div>
+
+  <div class="content">
+    <div class="system-line"></div>
+
+    <!-- THAY ẢNH NÀY BẰNG ẢNH CỦA BẠN -->
+    <div class="logo">
+      <img src="https://i.postimg.cc/Kcps1Jz0/IMG-1631.jpg" alt="Logo Kai Shi"
+           onerror="this.style.display='none'">
+    </div>
+
+    <h1>KAI SHI</h1>
+    <p class="subtitle">HACK PUBG VÀ KEY FREE</p>
+
+    <div class="status">
+      <span class="dot"></span>
+      Hoạt Động 24/24
+    </div>
+
+    <!-- ẢNH GIỚI THIỆU PHÍA TRÊN NÚT TẢI -->
+    <p class="section">1. DRACULA PRO</p>
+
+    <div class="preview">
+      <img src="https://i.postimg.cc/YSjxBwNQ/IMG-1632.jpg" alt="Ảnh giới thiệu tool"
+           onerror="this.style.display='none'">
+      <div class="preview-placeholder">
+      </div>
+    </div>
+
+    <!-- LINK TẢI XUỐNG -->
+
+    <a class="btn download"
+       href="itms-services://?action=download-manifest&url=https%3A%2F%2Fappinstall.cloud%2Fplist%2Ffmdanift9999.plist%3Fv%3D10c2d77fff8b23e9"
+       target="_blank" rel="noopener noreferrer">
+      TẢI HACK
+    </a>
+
+    <!-- LINK LẤY KEY -->
+
+    <a class="btn key"
+       href="https://link4m.net/GSo0CC"
+       target="_blank" rel="noopener noreferrer">
+      LẤY KEY
+    </a>
+
+    <div class="info">
+      <p><span>▸</span> Hack hoạt động an toàn tuyệt đối</p>
+      <p><span>▸</span> Cài đặt dễ dang</p>
+      <p><span>▸</span> Hack hoạt động tất cả các phiên bản ios</p>
+      <p><span>▸</span> Hack và key hoàn toàn miễn phí</p>
+    </div>
+
+    <footer>
+      <span>KAI SHI</span> HACK PUBG<br>
+      © 2026 KAI SHAI VN
+    </footer>
+  </div>
+</main>
+
+<script>
+/* HIỆU ỨNG MATRIX RAIN */
+(() => {
+  const canvas = document.getElementById("matrix");
+  const ctx = canvas.getContext("2d");
+  if (!ctx) return;
+
+  const chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZアイウエオ";
+  const size = 15;
+  let width, height, drops = [], raf = 0;
+  let running = true;
+
+  function resize() {
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    width = window.innerWidth;
+    height = window.innerHeight;
+    canvas.width = width * dpr;
+    canvas.height = height * dpr;
+    canvas.style.width = width + "px";
+    canvas.style.height = height + "px";
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+    const columns = Math.ceil(width / size);
+    drops = Array.from(
+      {length: columns},
+      () => Math.random() * (height / size)
+    );
+  }
+
+  function draw() {
+    if (!running) return;
+
+    ctx.fillStyle = "rgba(2, 11, 5, 0.13)";
+    ctx.fillRect(0, 0, width, height);
+    ctx.font = size + "px monospace";
+
+    for (let i = 0; i < drops.length; i++) {
+      const char = chars[Math.floor(Math.random() * chars.length)];
+      ctx.fillStyle = Math.random() > 0.97 ? "#caffd7" : "#00ff66";
+      ctx.fillText(char, i * size, drops[i] * size);
+
+      if (drops[i] * size > height && Math.random() > 0.975) {
+        drops[i] = 0;
+      }
+      drops[i] += 0.45 + Math.random() * 0.45;
+    }
+
+    raf = requestAnimationFrame(draw);
+  }
+
+  window.addEventListener("resize", resize);
+
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) {
+      running = false;
+      cancelAnimationFrame(raf);
+    } else if (!running) {
+      running = true;
+      draw();
+    }
+  });
+
+  resize();
+  draw();
+})();
+</script>
+
+</body>
+</html>
